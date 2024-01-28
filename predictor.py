@@ -7,7 +7,6 @@ from misc import colorize
 class DepthEstimationModel:
     def __init__(self) -> None:
         self.device = self._get_device()
-        print(self.device)
         self.model = self._initialize_model(
             model_repo="isl-org/ZoeDepth", model_name="ZoeD_N"
         ).to(self.device)
@@ -34,9 +33,4 @@ class DepthEstimationModel:
         print("Image read.")
         depth_numpy = self.model.infer_pil(image)
         self.save_colored_depth(depth_numpy, output_path)
-
         return f"Image saved to output_path"
-
-
-# model = DepthEstimationModel()
-# model.calculate_depthmap("test_image.png","output.png")
